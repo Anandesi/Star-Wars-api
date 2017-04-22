@@ -9,14 +9,14 @@ A small express server with endpoints centered around Star Wars. This will hopef
 * '/planetresidents' - Return raw JSON in the form {planetName1: [characterName1, characterName2], planetName2: [characterName3]}. 
     So it is an object where the keys are the planet names, and the values are lists of residents names for that planet
 	
-#How to use
-1 install all the dependencies using 'npm install'
-2 execute server.js in node 
+## How to use
+* install all the dependencies using 'npm install'
+* execute server.js in node 
 
-#Examples
-http://localhost:8080/character/Quarsh
-http://localhost:8080/characters?sort=height
-http://localhost:8080/planetresidents?page=1
+## Examples
+* http://localhost:8080/character/Quarsh
+* 0http://localhost:8080/characters?sort=height
+* http://localhost:8080/planetresidents?page=1
 
 
 
