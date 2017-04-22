@@ -134,5 +134,5 @@ app.get('/characters', function(req, res) {
 });
 
 
-app.listen(80);
+app.listen(process.env.PORT || 3000);
 console.log('80 is the magic port');
