@@ -15,7 +15,7 @@ A small express server with endpoints centered around Star Wars. This will hopef
 
 ## Examples
 * http://localhost:8080/character/Quarsh
-* 0http://localhost:8080/characters?sort=height
+* http://localhost:8080/characters?sort=height
 * http://localhost:8080/planetresidents?page=1
 
 
