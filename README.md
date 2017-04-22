@@ -14,10 +14,8 @@ A small express server with endpoints centered around Star Wars. This will hopef
 * execute server.js in node 
 
 ## Examples
-* http://localhost:8080/character/Quarsh
-* http://localhost:8080/characters?sort=height
-* http://localhost:8080/planetresidents?page=1
 
-
-
+* https://star-wars-njs.herokuapp.com/character/Quarsh
+* https://star-wars-njs.herokuapp.com/characters?sort=height
+* https://star-wars-njs.herokuapp.com/planetresidents?page=1
 
