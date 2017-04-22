@@ -10,9 +10,6 @@ app.set('view engine', 'ejs');
 // use res.render to load up an ejs view file
 
 // index page 
-app.get('/', function(req, res) {
-	res.render('pages/index');
-});
 
 app.get('/character/:name', function(req, res) {
 	var name = req.params.name;
@@ -40,7 +37,7 @@ app.get('/character/:name', function(req, res) {
 
 app.get('/planetresidents', function(req, res) {
 	var page = req.query.page;
-	if(Number(page))
+	if(Number(page) && Number(page)<7 && Number(page)>0)
 	{
 		var jsonToReturn = {};
 		var characters = [];
@@ -68,7 +65,8 @@ app.get('/planetresidents', function(req, res) {
 	    			if (idx === array.length - 1){ 
 					       console.log("Last callback call at index " + idx + " with value "); 
 					       console.log(jsonToReturn);
-					      res.render('pages/planets', {json: jsonToReturn});
+					      //res.render('pages/planets', {json: jsonToReturn});
+					      res.json(jsonToReturn);
 							return;
 				   }
 	 	    		})
@@ -82,13 +80,19 @@ app.get('/planetresidents', function(req, res) {
 	}
 	else
 	{
-		res.json({success: false, message: "Enter correct parameter for page."});
+		res.json({success: false, message: "Enter correct parameter for page. (0 > Page >= 6) "});
 	}
 });
 
 app.get('/characters', function(req, res) {
 	var sort = req.query.sort;
+	try{
 	sort = sort.toLowerCase();
+	}
+	catch (err)
+	{
+		console.log(err);
+	}
 	console.log(sort);
 	var jsonToReturn = [];
 	for (var i = 1; i < 6 && jsonToReturn.length < 50; i++) {
@@ -105,7 +109,8 @@ app.get('/characters', function(req, res) {
 			if(sort == "name")
 			{
 			jsonToReturn.sort(function(a,b) {return (a[sort] > b[sort]) ? 1 : ((b[sort] > a[sort]) ? -1 : 0);} );
-			res.render('pages/characters', {json: jsonToReturn});
+			//res.render('pages/characters', {json: jsonToReturn});
+			res.json({success: true, count: jsonToReturn.length ,people: jsonToReturn});
 						return;
 			}
 			else if(sort == "height" || sort == "mass")
@@ -113,12 +118,13 @@ app.get('/characters', function(req, res) {
 				jsonToReturn.sort(function(a, b) {
 			    return a[sort] - b[sort];
 			});
-				res.render('pages/characters', {json: jsonToReturn});
+				//res.render('pages/characters', {json: jsonToReturn});
+				res.json({success: true, count: jsonToReturn.length ,people: jsonToReturn});
 						return;
 			}
 			else
 			{
-			res.json({success: true, message: 'Sorting parameter is Invalid or Not Defined', count: jsonToReturn.length ,people: jsonToReturn});
+			res.json({success: true, message: 'Sorting parameter is Invalid or Not Defined, This list is not Sorted.', count: jsonToReturn.length ,people: jsonToReturn});
 						return;
 			}
 			
@@ -134,5 +140,5 @@ app.get('/characters', function(req, res) {
 });
 
 
-app.listen(process.env.PORT || 3000);
-console.log('80 is the magic port');
+app.listen(8080);
+console.log('8080 is the magic port');
