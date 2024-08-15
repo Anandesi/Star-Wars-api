@@ -1,3 +1,4 @@
+# DEPRECATED
 # Star-Wars
 
 A small express server with endpoints centered around Star Wars. This will hopefully demonstrate to us abilities to make an express app, consume data from an API, and manipulate that data into some desired way. 
